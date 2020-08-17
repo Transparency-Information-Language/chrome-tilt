@@ -9,7 +9,6 @@ This chrome extension interacts with a web page based on its transparency inform
 4. Check your extensions menu.
 5. Click on the extension's icon.
 
-|---|---|
 | ![](docs/screenshot.png)  | ![](docs/screenshot2.png) |
 |---|---|
 
