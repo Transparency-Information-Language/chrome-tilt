@@ -7,8 +7,10 @@ function getSchema() {
   xhr.open('GET', schemaUrl, true);
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 4) {
-      var schema = JSON.parse(xhr.responseText).$id;
-      document.getElementById('schema').textContent = schema;
+      document.getElementById('schema').textContent = JSON.parse(xhr.responseText).$id;
+      document.getElementById('schemaId').textContent = JSON.parse(xhr.responseText).$schema;
+      document.getElementById('schemaUrl').textContent = schemaUrl;
+      document.getElementById('timestamp').textContent = new Date(Number(new Date()));
     }
   }
   xhr.send();
@@ -16,16 +18,43 @@ function getSchema() {
 
 function getDocument() {
   var documentUrl =  'https://eliasgruenewald.de/tilt.json';
+  document.getElementById('learnMore').onclick = function() {
+    location.href = documentUrl;
+};
 
   var xhr = new XMLHttpRequest();
   xhr.open('GET', documentUrl, true);
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 4) {
-      var name = JSON.parse(xhr.responseText).meta.name;
-      document.getElementById('document').textContent = name;
+      var tilt = JSON.parse(xhr.responseText);
+      document.getElementById('controller').textContent         = tilt .controller.name;
+      document.getElementById('dpo').textContent                = tilt.dataProtectionOfficer.name;
+      document.getElementById('dataDisclosedCount').textContent = tilt.dataDisclosed.length;
+
+      var aD = document.getElementById('automatedDec');
+      if(tilt.automatedDecisionMaking.inUse) {
+        aD.textContent = 'in use';
+        aD.className = 'badge badge-danger';
+      } else {
+        aD.textContent = 'not in use';
+        aD.className = 'badge badge-success';
+      }
+
+      var thirdCountries = tilt.thirdCountryTransfers;
+      for (var i = 0, l = thirdCountries.length; i < l; i++) {
+        var transfer = thirdCountries[i];
+
+        var flag = document.createElement('img');
+        flag.id = transfer.country.toLowerCase();
+        flag.src = 'https://www.countryflags.io/' + transfer.country.toLowerCase() + '/shiny/24.png';
+        document.getElementById('thirdCountry').appendChild(flag);
+      };
+
     }
   }
   xhr.send();
+
+  
 }
 
 function fireWhenDOMContentIsLoaded() {
