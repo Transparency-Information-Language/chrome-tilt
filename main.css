@@ -4,8 +4,34 @@ body {
     background-color: transparent;
   }
   
-  .div {
+.div {
     margin-top: 0 !important;
     margin-bottom: 0;
     padding: 0cm;
   }
+
+pre span {
+	transition: background 0.5s ease;
+}
+
+pre span:hover {
+	background: yellow;
+}
+
+
+h2:hover:after {
+	content: ' Transparency Information Language and Toolkit';
+	font-weight: bold;
+	font-size: 40%;
+}
+
+#github {
+	transition: font-size 0.2s ease;
+}
+#github:hover {
+	font-size: 100%;
+}
+
+#thirdCountry img:hover {
+	width: 5%;
+}

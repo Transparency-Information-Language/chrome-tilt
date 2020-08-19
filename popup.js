@@ -69,6 +69,8 @@ async function getDocument() {
         this.setAttribute('class', 'collapse');
       });
 
+
+
       // document.getElementById('transparencyInformation').style.visibility = 'visible';
 
     }
@@ -126,7 +128,7 @@ function validateDocument(schema, doc) {
 async function fireWhenDOMContentIsLoaded() {
   getSchema();
   getDocument();
-  validateDocument();
+  // validateDocument();
 }
 
 document.addEventListener(EVENT_DOM_CONTENT_LOADED, fireWhenDOMContentIsLoaded);
