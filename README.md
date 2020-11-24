@@ -19,5 +19,5 @@ Icon made by [Wichai.wi](https://www.flaticon.com/free-icon/gdpr_1355236) from [
 Elias Grünewald
 
 ## License
-GNU General Public License, Version 3
+[MIT License](LICENSE)
 
